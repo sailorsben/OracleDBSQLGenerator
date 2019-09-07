@@ -1,0 +1,21 @@
+{
+  "name": "oracleapi",
+  "version": "1.0.0",
+  "description": "API to communicate with CORP7 Database",
+  "main": "oracle.js",
+  "scripts": {
+    "start": "node start.js",
+    "test": "test"
+  },
+  "keywords": [
+    "oracle",
+    "api"
+  ],
+  "author": "Ben Sailors",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "esm": "^3.2.25",
+    "oracledb": "^4.0.1"
+  }
+}
