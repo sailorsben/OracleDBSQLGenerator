@@ -4,7 +4,7 @@
   "description": "API to communicate with CORP7 Database",
   "main": "oracle.js",
   "scripts": {
-    "start": "node start.js",
+    "start": "node index.js",
     "test": "test"
   },
   "keywords": [
