@@ -6,11 +6,10 @@ export class Notes {
         var notesArray = []
         var description = `/*IMP-${request.ticketNumber} Add `
         var keys = Object.keys(COLUMNS)
-        keys.forEach(function(keys) {
-            if (request.desiredFields.includes(COLUMNS[keys])) {
-                description = description  + keys + ", "
-            }
-        })
+
+        for (var i = 0; i < request.desiredFields.length; i++) {
+            description = description + keys.find(key => COLUMNS[key] === request.desiredFields[i]) +  ", "
+        }
 
         description = description.substring(0, description.length-2)
         description = description + "\n(Field ID "
@@ -18,19 +17,21 @@ export class Notes {
         request.desiredFields.forEach(function(desiredField) {
             description = description + desiredField + ", "
         })
+        
         description = description.substring(0, description.length-2)
         description = description + `) to end of BEF for ${request.merchantName} */ \n\n`
-        description = description + `/* @ Branch - Parcel\\ngs_pcl_database_core\\IMP-${request.ticketNumber}_${request.merchantName}`
+        description = description + `/* @ Branch - Parcel\\ngs_pcl_database_core\\IMP-${request.ticketNumber}_${(request.merchantName.split(' ').join('_')).toUpperCase()}`
+        
         if (defaultBoolean) {
             description = description + "_DEFAULT_"
         } else {
             description = description + "_"
         }
-        keys.forEach(function(keys) {
-            if (request.desiredFields.includes(COLUMNS[keys])) {
-                description = description  + keys + "_"
-            }
-        })
+
+        for (var i = 0; i < request.desiredFields.length; i++) {
+            description = description  + keys.find(key => COLUMNS[key] === request.desiredFields[i]) + "_"
+        }
+
         description = description.substring(0, description.length-1)
         description = description + ".sql */"  + "\n"
         notesArray.push(description)
