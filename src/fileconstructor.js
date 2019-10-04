@@ -37,6 +37,11 @@ export class FileConstructor {
         let filenameArray = notesArray[0].split("\\");
         let filename = filenameArray[2].substring(0, filenameArray[2].length - 4)
 
+        if (filename.length > 100) {
+            console.log("Truncating the filename")
+            filename = filename.substring(0, 100)
+        }
+
         FileOutput.prototype.createFile(newfile, request, filename)
     }
 }
