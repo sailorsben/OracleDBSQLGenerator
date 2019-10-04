@@ -1,4 +1,2 @@
-node_modules/.cache/
-node_modules/.cache/esm/
-node_modules/.cache/esm/.data.json
+/node_modules
 .env
