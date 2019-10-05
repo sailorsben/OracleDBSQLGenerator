@@ -5,35 +5,35 @@ export class RequestValidator {
         var errorsArray = []
 
         // Check request desired fields.
-        if (request.desiredFields) {
+        if (request.desiredFields != null) {
 
         } else {
             errorsArray.push(new Errror ("request.desiredFields is null."))
         }
 
         // Check merchantName
-        if (request.merchantName) {
+        if (request.merchantName != null) {
 
         } else {
             errorsArray.push(new Error ("request.merchantName is null."))
         }
 
         // Check merchantID
-        if (request.merchantID) {
+        if (request.merchantID != null) {
 
         } else {
             errorsArray.push(new Error ("request.merchantID is null."))
         }
 
         // Check ticket number
-        if (request.ticketNumber) {
+        if (request.ticketNumber != null) {
 
         } else {
             errorsArray.push(new Error ("request.ticketNumber is null."))
         }
 
         // Check save location
-        if (request.saveLocation) {
+        if (request.saveLocation != null) {
 
         } else {
             errorsArray.push(new Error ("request.saveLoation is null."))
@@ -47,7 +47,7 @@ export class RequestValidator {
         }
 
         // Check customDate
-        if (request.customDate) {
+        if (request.customDate != null) {
 
         } else {
             errorsArray.push(new Error ("request.customDate is null."))
@@ -61,7 +61,7 @@ export class RequestValidator {
         }
 
         // Check invoice_class
-        if (request.invoice_class) {
+        if (request.invoice_class != null) {
 
         } else {
             errorsArray.push(new Error ("request.invoice_class is null."))
