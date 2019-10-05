@@ -1,4 +1,5 @@
 import { Oracle } from './oracle.js'
+import { RequestValidator } from './requestvalidator.js'
 import { COLUMNS } from './columns.js'
 
 var request = {
@@ -12,13 +13,15 @@ var request = {
   ticketNumber: 15059,
   saveLocation: 'C:\\Users\\be016sa\\Documents\\ngs_bill_database_oracle_newg\\scripts',
   newBEF: true,
-  customDate: '23-JUN-201',
+  customDate: '23-JUN-2019',
   defaultBEF: false,
   invoice_class: 'FORWARD'
 }
 
 function run() {
-  Oracle.prototype.initializeScript(request)
+  if (RequestValidator.prototype.checkRequest(request)) {
+    Oracle.prototype.initializeScript(request)
+  }
 }
 
 run();
