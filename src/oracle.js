@@ -23,17 +23,30 @@ export class Oracle {
       console.log("Attempting SQL")
       results = await connection.execute(sql)
 
-      newDate = ScriptDate.prototype.getScriptDate()
+      if (request.customDate.length > 0) {
+        newDate = request.customDate
+      } else {
+        newDate = ScriptDate.prototype.getScriptDate()
+      }
 
       if (results.rows.length > 0) {
         sqlCurrentNumber = results.rows[results.rows.length - 1][4] + 1
+
+        if (request.newBEF == true) {
+          sqlCurrentNumber = 1;
+        }
+
         console.log(`Iterating new rows from: ${sqlCurrentNumber}`)
+
         FileConstructor.prototype.buildNewFile(request, newDate, sqlCurrentNumber, false)
       } else {
         console.log("0 rows were found.")
-        console.log("Creating rows for base columns. New inserts will start at 22.")
+
+        if (request.newBEF == false) {
+          console.log("Creating rows for base columns. New inserts will start at 22.")
       
-        sqlCurrentNumber = 22
+          sqlCurrentNumber = 22
+        }         
 
         FileConstructor.prototype.buildNewFile(request, newDate, sqlCurrentNumber, true)
       }

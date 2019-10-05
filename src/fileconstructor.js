@@ -4,25 +4,25 @@ import { BuildInserts } from './buildInserts.js'
 import { FileOutput } from './fileoutput.js'
 
 export class FileConstructor {
-    buildNewFile(request, newDate, sqlCurrentNumber, defaultBoolean) {
+    buildNewFile(request, newDate, sqlCurrentNumber) {
         
         var newfile = []
 
-        var notesArray = Notes.prototype.createNotes(request, defaultBoolean)
+        var notesArray = Notes.prototype.createNotes(request)
         
         notesArray.forEach(function(note) {
             newfile.push(note)
         })
 
 
-        if (defaultBoolean) {
+        if (request.defaultBEF == true) {
             var baseSetupArray = BaseSetup.prototype.createBaseInserts(request, newDate)
             baseSetupArray.forEach(function(baseSetup) {
                 newfile.push(baseSetup)
             })
         }
 
-        if (!defaultBoolean) {
+        if (request.defaultBEF == false) {
             var insertsArray = BuildInserts.prototype.createInsertStatements(newDate, sqlCurrentNumber, request)
             insertsArray.forEach(function(insert) {
                 newfile.push(insert)
@@ -30,7 +30,7 @@ export class FileConstructor {
         }
         
         newfile.push("\nCOMMIT;")
-        if (defaultBoolean) {
+        if (request.defaultBEF == true) {
             newfile.push("\nEND;")
         }
 
@@ -39,7 +39,7 @@ export class FileConstructor {
 
         if (filename.length > 100) {
             console.log("Truncating the filename")
-            filename = filename.substring(0, 100)
+            filename = filename.substring(0, 100) + ".sql"
         }
 
         FileOutput.prototype.createFile(newfile, request, filename)

@@ -2,7 +2,7 @@ import { COLUMNS } from './columns.js'
 
 export class Notes {
 
-    createNotes(request, defaultBoolean) {
+    createNotes(request) {
         var notesArray = []
         var description = `/*IMP-${request.ticketNumber} Add `
         var keys = Object.keys(COLUMNS)
@@ -22,7 +22,7 @@ export class Notes {
         description = description + `) to end of BEF for ${request.merchantName} */ \n\n`
         description = description + `/* @ Branch - Parcel\\ngs_pcl_database_core\\IMP-${request.ticketNumber}_${(request.merchantName.split(' ').join('_')).toUpperCase()}`
         
-        if (defaultBoolean) {
+        if (request.defaultBEF == true) {
             description = description + "_DEFAULT_"
         } else {
             description = description + "_"
