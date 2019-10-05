@@ -16,15 +16,21 @@ export class Oracle {
 
     sql = `select * from NEWG.EXTRACT_FILE_DETAIL 
              where MERCHANT_ID = ${request.merchantID} 
-             and invoice_class = 'FORWARD'
+             and invoice_class = '${request.invoice_class}'
              order by sortorder asc`
 
     try {
       console.log("Attempting SQL")
       results = await connection.execute(sql)
 
-      if (request.customDate.length > 0) {
-        newDate = request.customDate
+      if (request.customDate) {
+        var dateRegex = new RegExp('\\d{2}-\\w{3}-\\d{4}')
+        if (request.customDate.match(dateRegex)) {
+          newDate = request.customDate
+        } else {
+          throw new Error('The customDate field in the request is formatted incorrectly. It should follow the format of 01-JAN-2019')
+        }
+        
       } else {
         newDate = ScriptDate.prototype.getScriptDate()
       }

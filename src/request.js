@@ -12,8 +12,9 @@ var request = {
   ticketNumber: 15059,
   saveLocation: 'C:\\Users\\be016sa\\Documents\\ngs_bill_database_oracle_newg\\scripts',
   newBEF: true,
-  customDate: '23-JUN-2019',
-  defaultBEF: false
+  customDate: '23-JUN-201',
+  defaultBEF: false,
+  invoice_class: 'FORWARD'
 }
 
 function run() {
