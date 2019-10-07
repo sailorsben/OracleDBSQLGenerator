@@ -1,6 +1,7 @@
 import { Notes } from './notes.js'
 import { BaseSetup } from './basesetup.js'
-import { BuildInserts } from './buildInserts.js'
+import { BuildInserts } from './buildinserts.js'
+import { BuildDelete } from './builddelete.js'
 import { FileOutput } from './fileoutput.js'
 
 export class FileConstructor {
@@ -13,6 +14,11 @@ export class FileConstructor {
         notesArray.forEach(function(note) {
             newfile.push(note)
         })
+
+        if (request.newBEF == true && request.defaultBEF == false) {
+            var deleteSetupString = BuildDelete.prototype.createDeleteStatement(request)
+            newfile.push(deleteSetupString)
+        }
 
 
         if (request.defaultBEF == true) {
@@ -39,7 +45,8 @@ export class FileConstructor {
 
         if (filename.length > 100) {
             console.log("Truncating the filename")
-            filename = filename.substring(0, 100) + ".sql"
+            filename = 'IMP-' + request.ticketNumber + '_' + request.merchantName + '_SEE_NOTES_FOR_ALL_FIELDS.sql'
+            filename = filename.toUpperCase()
         }
 
         FileOutput.prototype.createFile(newfile, request, filename)
