@@ -15,7 +15,7 @@ export class FileConstructor {
             newfile.push(note)
         })
 
-        if (request.newBEF == true && request.defaultBEF == false) {
+        if (request.addDelete == true) {
             var deleteSetupString = BuildDelete.prototype.createDeleteStatement(request)
             newfile.push(deleteSetupString)
         }
@@ -42,6 +42,8 @@ export class FileConstructor {
 
         let filenameArray = notesArray[0].split("\\");
         let filename = filenameArray[2].substring(0, filenameArray[2].length - 4)
+
+        request.merchantName = request.merchantName.replace(/\s/g, "_");
 
         if (filename.length > 100) {
             console.log("Truncating the filename")

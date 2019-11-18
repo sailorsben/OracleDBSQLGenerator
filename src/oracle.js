@@ -52,7 +52,9 @@ export class Oracle {
           console.log("Creating rows for base columns. New inserts will start at 22.")
       
           sqlCurrentNumber = 22
-        }         
+        } else {
+          sqlCurrentNumber = 1
+        }
 
         FileConstructor.prototype.buildNewFile(request, newDate, sqlCurrentNumber, true)
       }
