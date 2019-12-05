@@ -18,6 +18,8 @@ export class FileConstructor {
         if (request.addDelete == true) {
             var deleteSetupString = BuildDelete.prototype.createDeleteStatement(request)
             newfile.push(deleteSetupString)
+        } else {
+            console.log("Delete will not be added.")
         }
 
 
@@ -26,6 +28,8 @@ export class FileConstructor {
             baseSetupArray.forEach(function(baseSetup) {
                 newfile.push(baseSetup)
             })
+        } else {
+            console.log("This is not a default BEF setup.")
         }
 
         if (request.defaultBEF == false) {
@@ -47,7 +51,7 @@ export class FileConstructor {
 
         if (filename.length > 100) {
             console.log("Truncating the filename")
-            filename = 'IMP-' + request.ticketNumber + '_' + request.merchantName + '_SEE_NOTES_FOR_ALL_FIELDS.sql'
+            filename = 'IMP-' + request.ticketNumber + '_' + request.merchantID + '_' + request.merchantName + '_SEE_NOTES_FOR_ALL_FIELDS.sql'
             filename = filename.toUpperCase()
         }
 

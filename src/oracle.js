@@ -40,23 +40,25 @@ export class Oracle {
 
         if (request.newBEF == true) {
           sqlCurrentNumber = 1;
+        } else {
+          console.log("Editing an existing BEF...")
         }
 
         console.log(`Iterating new rows from: ${sqlCurrentNumber}`)
 
-        FileConstructor.prototype.buildNewFile(request, newDate, sqlCurrentNumber, false)
+        FileConstructor.prototype.buildNewFile(request, newDate, sqlCurrentNumber)
       } else {
         console.log("0 rows were found.")
 
         if (request.newBEF == false) {
-          console.log("Creating rows for base columns. New inserts will start at 22.")
+          console.log("Creating rows for base columns. New inserts will start at 38.")
       
-          sqlCurrentNumber = 22
+          sqlCurrentNumber = 38
         } else {
           sqlCurrentNumber = 1
         }
 
-        FileConstructor.prototype.buildNewFile(request, newDate, sqlCurrentNumber, true)
+        FileConstructor.prototype.buildNewFile(request, newDate, sqlCurrentNumber)
       }
     } catch (err) {
       console.log(err)
