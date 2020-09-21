@@ -4,23 +4,17 @@ import { COLUMNS } from './columns.js'
 
 var request = {
   desiredFields: [
-    COLUMNS.REFERENCE_NUMBER,
-    COLUMNS.BALLOON_FEE,
-    COLUMNS.OVERSIZE_FEE,
-    COLUMNS.NONMACHINABLE_FEE,
-    COLUMNS.VOLUME_ADJUSTMENT_FEE,
-    COLUMNS.TRANSPORTATION_FEE_AMT,
-    COLUMNS.ORIGINAL_PRIMARY_BARCODE,
-    COLUMNS.APOFPO_ZIP_FLAG
+    COLUMNS.PRSBARCODE,
+    COLUMNS.RETURNID
   ],
-  merchantName: "E-Fashion E-Commerce",
-  merchantID: 2976,
-  ticketNumber: 17728,
+  merchantName: "ECBEST",
+  merchantID: 2785,
+  ticketNumber: 21214,
   saveLocation: 'C:\\Users\\be016sa\\Documents\\ngs_bill_database_oracle_newg\\scripts',
   newBEF: false,
-  customDate: '01-NOV-2019',
+  customDate: '01-AUG-2020',
   defaultBEF: false,
-  invoice_class: 'FORWARD',
+  invoice_class: 'TRANSACTION', // FORWARD (delivery) OR  TRANSACTION (return)
   addDelete: false
 }
 
